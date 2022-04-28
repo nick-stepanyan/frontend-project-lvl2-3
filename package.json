@@ -21,6 +21,7 @@
   "type": "module",
   "homepage": "https://github.com/Nikolos-S/frontend-project-lvl2#readme",
   "dependencies": {
-    "commander": "^9.2.0"
+    "commander": "^9.2.0",
+    "lodash": "^4.17.21"
   }
 }
