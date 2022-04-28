@@ -25,6 +25,7 @@ const gendiff = (filepath1, filepath2) => {
             }
     }
     return result;
+    console.log(process.cwd());
 };
 
 export default gendiff;
