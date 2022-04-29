@@ -1,9 +1,8 @@
 import { readFileSync } from 'fs';
-import path from 'path';
+import { resolve } from 'path';
 
 const convert = (filepath) => {
-    const absolutePath = path.resolve(filepath);
-    const fileData = readFileSync(absolutePath, 'utf8');
+    const fileData = readFileSync(resolve(process.cwd(), filepath));
     return JSON.parse(fileData);
 };
 
