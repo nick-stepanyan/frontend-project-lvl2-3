@@ -9,3 +9,9 @@ lint: # запустить eslint, чтобы исправить ошибки
 
 fix: # пофиксить ошибки
 	npx eslint --fix .
+
+test:
+	npm test
+
+test-coverage:
+	npm test -- --coverage --coverageProvider=v8
