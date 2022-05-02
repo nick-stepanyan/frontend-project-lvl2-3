@@ -1,31 +1,35 @@
-name: Node CI
+name: autolinting
 on:
  - push
  - pull_request
-
-env:
-  CI: true
-
+  
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [14.x]
-
-    steps:
+ build:
+  runs-on: ubuntu-latest
+  
+  strategy:
+      # Node versions 
+   matrix:
+    node-version: [14.x]
+  
+  steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}     
- - run: make install
- - run: make lint
- - run: make test
-       - name: Test & publish code coverage
-       uses: paambaati/codeclimate-action@v3
-       env:
-       CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_ID }}
-       with:
-       coverageCommand: make test-coverage
-       debug: true
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build
+        run: |
+          make install
+        env:
+          CI: true
+      - name: Run linter
+        run: |
+          make lint
+      - name: Test & publish code coverage
+        uses: paambaati/codeclimate-action@v2.7.4
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CODECLIMATE_ID }}
+        with:
+          coverageCommand: make test-coverage
+          debug: true
