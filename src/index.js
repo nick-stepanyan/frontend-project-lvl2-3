@@ -1,10 +1,10 @@
 import _ from 'lodash';
 
-import convert from './convert.js';
+import parsers from './parsers.js';
 
 const gendiff = (filepath1, filepath2) => {
-  const file1 = convert(filepath1);
-  const file2 = convert(filepath2);
+  const file1 = parsers(filepath1);
+  const file2 = parsers(filepath2);
   const arrKey1 = Object.keys(file1);
   const arrKey2 = Object.keys(file2);
   const arrKey = _.union(arrKey1, arrKey2).sort();

@@ -13,3 +13,10 @@ test('Comparison of flat files (JSON)', () => {
   const pathFileJsonTwo = getFixturePath('file2.json');
   expect(gendiff(pathFileJsonOne, pathFileJsonTwo)).toBe(expectedJson);
 });
+
+test('Comparison of flat files (yaml)', () => {
+  const expectedJson = readFileSync(getFixturePath('expectedYml.txt'), 'utf8');
+  const pathFileJsonOne = getFixturePath('filepath1.yml');
+  const pathFileJsonTwo = getFixturePath('filepath2.yml');
+  expect(gendiff(pathFileJsonOne, pathFileJsonTwo)).toBe(expectedJson);
+});

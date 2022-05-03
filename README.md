@@ -9,3 +9,6 @@
 
 Comparison of flat files (JSON):
 <a href="https://asciinema.org/a/bPz8SoBSkRh5BBglgjpSHytjo" target="_blank"><img src="https://asciinema.org/a/bPz8SoBSkRh5BBglgjpSHytjo.svg" /></a>
+
+Comparison of flat files (yaml):
+<a href="https://asciinema.org/a/zDodSEC0iIOrSwkw5Asq2yNUm" target="_blank"><img src="https://asciinema.org/a/zDodSEC0iIOrSwkw5Asq2yNUm.svg" /></a>
