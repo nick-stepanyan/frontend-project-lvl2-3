@@ -8,7 +8,7 @@ const parsers = (filepath) => {
   let result;
   if (format === '.json') {
     result = JSON.parse(fileData);
-  } else if (format === '.yml') {
+  } else if (format === '.yml' || format === '.yaml') {
     result = load(fileData);
   }
   return result;
