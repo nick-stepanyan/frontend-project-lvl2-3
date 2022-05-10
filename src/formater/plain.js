@@ -4,7 +4,7 @@ const isObject = (data) => {
   if ((_.isObject(data))) {
     return '[complex value]';
   }
-  return typeof data === 'boolean' || data === null ? data : `'${data}'`;
+  return typeof data === 'string' ? `'${data}'` : data;
 };
 
 const plain = (diff) => {
