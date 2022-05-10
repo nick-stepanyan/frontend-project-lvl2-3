@@ -5,13 +5,13 @@ import { load } from 'js-yaml';
 const parsers = (filepath) => {
   const fileData = readFileSync(path.resolve(process.cwd(), filepath));
   const format = path.extname(filepath);
-  let result;
   if (format === '.json') {
-    result = JSON.parse(fileData);
-  } else if (format === '.yml' || format === '.yaml') {
-    result = load(fileData);
+    return JSON.parse(fileData);
   }
-  return result;
+  if (format === '.yml' || format === '.yaml') {
+    return load(fileData);
+  }
+  return null;
 };
 
 export default parsers;
