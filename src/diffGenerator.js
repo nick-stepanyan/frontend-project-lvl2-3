@@ -3,7 +3,7 @@ import _ from 'lodash';
 const buildDiff = (obj1, obj2) => {
   const arrKeys1 = Object.keys(obj1);
   const arrKeys2 = Object.keys(obj2);
-  const arrKeys = _.union(arrKeys1, arrKeys2).sort();
+  const arrKeys = _.orderBy(_.union(arrKeys1, arrKeys2));
   const result = arrKeys.map((key) => {
     if (!_.has(obj1, key)) {
       return { name: key, type: 'added', value: obj2[key] };
