@@ -28,3 +28,14 @@ test('Flat format (JSON)', () => {
   expect(gendiff(pathFileJsonOne, pathFileJsonTwo, option)).toEqual(expected);
   expect(gendiff(pathFileYamlOne, pathFileYamlTwo, option)).toEqual(expected);
 });
+
+test('Output in json', () => {
+  const option = 'json';
+  const expected = readFileSync(getFixturePath('expectedJson.txt'), 'utf8');
+  const pathFileJsonOne = getFixturePath('file1.json');
+  const pathFileJsonTwo = getFixturePath('file2.json');
+  const pathFileYamlOne = getFixturePath('filepath1.yml');
+  const pathFileYamlTwo = getFixturePath('filepath2.yml');
+  expect(gendiff(pathFileJsonOne, pathFileJsonTwo, option)).toEqual(expected);
+  expect(gendiff(pathFileYamlOne, pathFileYamlTwo, option)).toEqual(expected);
+});

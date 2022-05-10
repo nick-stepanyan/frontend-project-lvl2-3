@@ -18,3 +18,6 @@ Recursive comparison:
 
 Flat format:
 <a href="https://asciinema.org/a/tRTeIXDQlnnuKPuVqLFCq741G" target="_blank"><img src="https://asciinema.org/a/tRTeIXDQlnnuKPuVqLFCq741G.svg" /></a>
+
+Output in json:
+<a href="https://asciinema.org/a/CqOocfi6iNKXEZpg25AxM1yor" target="_blank"><img src="https://asciinema.org/a/CqOocfi6iNKXEZpg25AxM1yor.svg" /></a>
