@@ -15,3 +15,6 @@ Comparison of flat files (yaml):
 
 Recursive comparison:
 <a href="https://asciinema.org/a/2gCLh5sgMrFJod6mguxaIH1fG" target="_blank"><img src="https://asciinema.org/a/2gCLh5sgMrFJod6mguxaIH1fG.svg" /></a>
+
+Flat format:
+<a href="https://asciinema.org/a/tRTeIXDQlnnuKPuVqLFCq741G" target="_blank"><img src="https://asciinema.org/a/tRTeIXDQlnnuKPuVqLFCq741G.svg" /></a>
