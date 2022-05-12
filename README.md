@@ -9,28 +9,28 @@
 ___
 ## Description:
 Difference Calculator is a program that determines the difference between two data structures. This is a popular task, for which there are many online services, for example http://www.jsondiff.com /. A similar mechanism is used when outputting tests or when automatically tracking changes in configuration files.
-___
+__
 ## Setup:
 ``make install``
-___
+__
 ## Utility Features:
 ``-Support for different input formats: yaml, json``
 ``-Generating a report in the form of plain text, stylish and json``
-___
+__
 ## Output reference information:
 ``gendiff -h``
-___
+__
 ## File comparison (default format is stylish):
 ``gendiff filepath1 filepath2``
-___
+__
 ## Compare two files using other formats:
 
 ``gendiff -f json file1.json file2.json``
 ``gendiff -f plain file1.json file2.json``
-___
+__
 ## Run test:
 ``make test``
-___
+__
 ## Comparison of flat files (JSON):
 <a href="https://asciinema.org/a/bPz8SoBSkRh5BBglgjpSHytjo" target="_blank"><img src="https://asciinema.org/a/bPz8SoBSkRh5BBglgjpSHytjo.svg" /></a>
 
