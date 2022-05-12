@@ -49,3 +49,5 @@ make test
 
 ## Output in json:
 <a href="https://asciinema.org/a/CqOocfi6iNKXEZpg25AxM1yor" target="_blank"><img src="https://asciinema.org/a/CqOocfi6iNKXEZpg25AxM1yor.svg" /></a>
+
+[Go To TOP](#TOP)

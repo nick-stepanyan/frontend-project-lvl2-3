@@ -6,36 +6,17 @@ import gendiff from '../src/index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const getFixturePath = (filename) => join(__dirname, '..', '__fixtures__', filename);
+const expected = (file) => readFileSync(getFixturePath(file), 'utf8');
 
-test('Recursive comparison (JSON, yaml)', () => {
-  const option = 'stylish';
-  const expected = readFileSync(getFixturePath('expected.txt'), 'utf8');
-  const pathFileJsonOne = getFixturePath('file1.json');
-  const pathFileJsonTwo = getFixturePath('file2.json');
-  const pathFileYamlOne = getFixturePath('filepath1.yml');
-  const pathFileYamlTwo = getFixturePath('filepath2.yml');
-  expect(gendiff(pathFileJsonOne, pathFileJsonTwo, option)).toEqual(expected);
-  expect(gendiff(pathFileYamlOne, pathFileYamlTwo, option)).toEqual(expected);
-});
-
-test('Flat format (JSON)', () => {
-  const option = 'plain';
-  const expected = readFileSync(getFixturePath('expectedFlat.txt'), 'utf8');
-  const pathFileJsonOne = getFixturePath('file1.json');
-  const pathFileJsonTwo = getFixturePath('file2.json');
-  const pathFileYamlOne = getFixturePath('filepath1.yml');
-  const pathFileYamlTwo = getFixturePath('filepath2.yml');
-  expect(gendiff(pathFileJsonOne, pathFileJsonTwo, option)).toEqual(expected);
-  expect(gendiff(pathFileYamlOne, pathFileYamlTwo, option)).toEqual(expected);
-});
-
-test('Output in json', () => {
-  const option = 'json';
-  const expected = readFileSync(getFixturePath('expectedJson.txt'), 'utf8');
-  const pathFileJsonOne = getFixturePath('file1.json');
-  const pathFileJsonTwo = getFixturePath('file2.json');
-  const pathFileYamlOne = getFixturePath('filepath1.yml');
-  const pathFileYamlTwo = getFixturePath('filepath2.yml');
-  expect(gendiff(pathFileJsonOne, pathFileJsonTwo, option)).toEqual(expected);
-  expect(gendiff(pathFileYamlOne, pathFileYamlTwo, option)).toEqual(expected);
+describe('Gendiff_test', () => {
+  test.each([
+    [getFixturePath('file1.json'), getFixturePath('file2.json'), 'stylish', expected('expected.txt')],
+    [getFixturePath('filepath1.yml'), getFixturePath('filepath2.yml'), 'stylish', expected('expected.txt')],
+    [getFixturePath('file1.json'), getFixturePath('file2.json'), 'plain', expected('expectedFlat.txt')],
+    [getFixturePath('filepath1.yml'), getFixturePath('filepath2.yml'), 'plain', expected('expectedFlat.txt')],
+    [getFixturePath('file1.json'), getFixturePath('file2.json'), 'json', expected('expectedJson.txt')],
+    [getFixturePath('filepath1.yml'), getFixturePath('filepath2.yml'), 'json', expected('expectedJson.txt')],
+  ])('%s, %s, format: %s', (file1, file2, format, expectedResult) => {
+    expect(gendiff(file1, file2, format)).toEqual(expectedResult);
+  });
 });
