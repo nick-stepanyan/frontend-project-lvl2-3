@@ -8,7 +8,9 @@
 [![run bug fix](https://github.com/Nikolos-S/frontend-project-lvl2/actions/workflows/nodejs.yml/badge.svg)](https://github.com/Nikolos-S/frontend-project-lvl2/actions/workflows/nodejs.yml)
 
 ## Description:
->Difference Calculator is a program that determines the difference between two data structures. This is a popular task, for which there are many online services, for example http://www.jsondiff.com /. A similar mechanism is used when outputting tests or when automatically tracking changes in configuration files.
+<kbd>
+Difference Calculator is a program that determines the difference between two data structures. This is a popular task, for which there are many online services, for example http://www.jsondiff.com /. A similar mechanism is used when outputting tests or when automatically tracking changes in configuration files.
+</kbd>
 
 ## Setup:
 ```sh
