@@ -7,6 +7,30 @@
 
 [![run bug fix](https://github.com/Nikolos-S/frontend-project-lvl2/actions/workflows/nodejs.yml/badge.svg)](https://github.com/Nikolos-S/frontend-project-lvl2/actions/workflows/nodejs.yml)
 
+Description:
+Difference Calculator is a program that determines the difference between two data structures. This is a popular task, for which there are many online services, for example http://www.jsondiff.com /. A similar mechanism is used when outputting tests or when automatically tracking changes in configuration files.
+
+Setup:
+make install
+
+Utility Features:
+-Support for different input formats: yaml, json
+-Generating a report in the form of plain text, stylish and json
+
+Output reference information:
+gendiff -h
+
+File comparison (default format is stylish):
+gendiff filepath1 filepath2
+
+Compare two files using other formats:
+
+gendiff -f json file1.json file2.json
+gendiff -f plain file1.json file2.json
+
+Run test:
+make test
+
 Comparison of flat files (JSON):
 <a href="https://asciinema.org/a/bPz8SoBSkRh5BBglgjpSHytjo" target="_blank"><img src="https://asciinema.org/a/bPz8SoBSkRh5BBglgjpSHytjo.svg" /></a>
 
