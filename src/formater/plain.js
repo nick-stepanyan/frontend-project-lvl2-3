@@ -8,24 +8,23 @@ const isObject = (data) => {
 };
 
 const plain = (diff) => {
-  const iter = (currentValue, depth) => {
+  const iter = (currentValue, way) => {
     const result = currentValue.filter((data) => data.type !== 'unchanged')
       .map((data) => {
-        const way = `${depth}.${data.name}`;
         if (data.type === 'added') {
-          return `Property '${way.slice(1)}' was added with value: ${isObject(data.value)}`;
+          return `Property '${[...way, data.name].join('.')}' was added with value: ${isObject(data.value)}`;
         }
         if (data.type === 'deleted') {
-          return `Property '${way.slice(1)}' was removed`;
+          return `Property '${[...way, data.name].join('.')}' was removed`;
         }
         if (data.type === 'changed') {
-          return `Property '${way.slice(1)}' was updated. From ${isObject(data.value1)} to ${isObject(data.value2)}`;
+          return `Property '${[...way, data.name].join('.')}' was updated. From ${isObject(data.value1)} to ${isObject(data.value2)}`;
         }
-        return iter(data.value, way);
+        return iter(data.value, [...way, data.name]);
       });
     return result.join('\n');
   };
-  return `${iter(diff, '')}`;
+  return `${iter(diff, [])}`;
 };
 
 export default plain;
