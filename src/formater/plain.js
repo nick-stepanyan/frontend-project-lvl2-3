@@ -18,8 +18,10 @@ const plain = (diff) => {
             return `Property '${[...path, data.name].join('.')}' was removed`;
           case 'changed':
             return `Property '${[...path, data.name].join('.')}' was updated. From ${isObject(data.value1)} to ${isObject(data.value2)}`;
-          default:
+          case 'isObject':
             return iter(data.value, [...path, data.name]);
+          default:
+            throw new Error(`Unknown state: '${data.type}'!`);
         }
       });
     return result.join('\n');
