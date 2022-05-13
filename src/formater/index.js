@@ -4,14 +4,12 @@ import json from './json.js';
 
 const format = (diff, typeFormat) => {
   switch (typeFormat) {
-    case 'stylish':
-      return stylish(diff);
     case 'plain':
       return plain(diff);
     case 'json':
       return json(diff);
     default:
-      return `Unknown format to generate a tree: '${typeFormat}'!`;
+      return stylish(diff);
   }
 };
 export default format;
