@@ -11,16 +11,16 @@ const plain = (diff) => {
   const iter = (currentValue, path) => {
     const result = currentValue.filter((data) => data.type !== 'unchanged')
       .map((data) => {
-        if (data.type === 'added') {
-          return `Property '${[...path, data.name].join('.')}' was added with value: ${isObject(data.value)}`;
+        switch (data.type) {
+          case 'added':
+            return `Property '${[...path, data.name].join('.')}' was added with value: ${isObject(data.value)}`;
+          case 'deleted':
+            return `Property '${[...path, data.name].join('.')}' was removed`;
+          case 'changed':
+            return `Property '${[...path, data.name].join('.')}' was updated. From ${isObject(data.value1)} to ${isObject(data.value2)}`;
+          default:
+            return iter(data.value, [...path, data.name]);
         }
-        if (data.type === 'deleted') {
-          return `Property '${[...path, data.name].join('.')}' was removed`;
-        }
-        if (data.type === 'changed') {
-          return `Property '${[...path, data.name].join('.')}' was updated. From ${isObject(data.value1)} to ${isObject(data.value2)}`;
-        }
-        return iter(data.value, [...path, data.name]);
       });
     return result.join('\n');
   };
