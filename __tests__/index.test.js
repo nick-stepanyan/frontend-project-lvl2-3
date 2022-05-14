@@ -16,7 +16,7 @@ describe('Gendiff_test', () => {
     [getFixturePath('filepath1.yml'), getFixturePath('filepath2.yml'), 'plain', expected('expectedFlat.txt')],
     [getFixturePath('file1.json'), getFixturePath('file2.json'), 'json', expected('expectedJson.txt')],
     [getFixturePath('filepath1.yml'), getFixturePath('filepath2.yml'), 'json', expected('expectedJson.txt')],
-  ])('%s, %s, format: %s', (file1, file2, format, expectedResult) => {
+  ])('calculate differences', (file1, file2, format, expectedResult) => {
     expect(gendiff(file1, file2, format)).toEqual(expectedResult);
   });
 });

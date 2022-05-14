@@ -1,34 +1,34 @@
 import _ from 'lodash';
 
-const isObject = (data, depth) => {
-  const indentSize = depth * 4 - 2;
-  const currentIndent = ' '.repeat(indentSize);
-  const bracketIndent = ' '.repeat(indentSize - 2);
+const indentSize = (depth) => depth * 4;
+const currentIndent = (depth) => ' '.repeat(indentSize(depth) - 2);
+const bracketIndent = (depth) => ' '.repeat(indentSize(depth) - 4);
+
+const stringify = (data, depth) => {
   if ((!_.isObject(data))) {
     return String(data);
   }
-  const lines = Object.entries(data).map(([key, value]) => `${currentIndent}  ${key}: ${isObject(value, depth + 1)}`);
-  return `{\n${lines.join('\n')}\n${bracketIndent}}`;
+  const lines = Object.entries(data).map(([key, value]) => `${currentIndent(depth)}  ${key}: ${stringify(value, depth + 1)}`);
+  return `{\n${lines.join('\n')}\n${bracketIndent(depth)}}`;
 };
 
 const stylish = (diff) => {
   const iter = (currentValue, depth) => {
-    const indentSize = depth * 4 - 2;
-    const currentIndent = ' '.repeat(indentSize);
     const result = currentValue.map((data) => {
-      if (data.type === 'added') {
-        return `${currentIndent}+ ${data.name}: ${isObject(data.value, depth + 1)}`;
+      switch (data.type) {
+        case 'added':
+          return `${currentIndent(depth)}+ ${data.name}: ${stringify(data.value, depth + 1)}`;
+        case 'deleted':
+          return `${currentIndent(depth)}- ${data.name}: ${stringify(data.value, depth + 1)}`;
+        case 'unchanged':
+          return `${currentIndent(depth)}  ${data.name}: ${stringify(data.value, depth + 1)}`;
+        case 'changed':
+          return `${currentIndent(depth)}- ${data.name}: ${stringify(data.value1, depth + 1)}\n${currentIndent(depth)}+ ${data.name}: ${stringify(data.value2, depth + 1)}`;
+        case 'isObject':
+          return `${currentIndent(depth)}  ${data.name}: {\n${iter(data.value, depth + 1)}\n  ${currentIndent(depth)}}`;
+        default:
+          throw new Error(`Unknown state: '${data.type}'!`);
       }
-      if (data.type === 'deleted') {
-        return `${currentIndent}- ${data.name}: ${isObject(data.value, depth + 1)}`;
-      }
-      if (data.type === 'unchanged') {
-        return `${currentIndent}  ${data.name}: ${isObject(data.value, depth + 1)}`;
-      }
-      if (data.type === 'changed') {
-        return `${currentIndent}- ${data.name}: ${isObject(data.value1, depth + 1)}\n${currentIndent}+ ${data.name}: ${isObject(data.value2, depth + 1)}`;
-      }
-      return `${currentIndent}  ${data.name}: {\n${iter(data.value, depth + 1)}\n  ${currentIndent}}`;
     });
     return result.join('\n');
   };
