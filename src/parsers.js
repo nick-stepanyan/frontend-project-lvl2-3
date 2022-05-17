@@ -1,15 +1,15 @@
-import path from 'path';
 import { load } from 'js-yaml';
 
-const parsers = (filepath, name) => {
-  const format = path.extname(name);
-  if (format === '.json') {
-    return JSON.parse(filepath);
+const parsers = (data, extension) => {
+  switch (extension) {
+    case 'json':
+      return JSON.parse(data);
+    case 'yml':
+      return load(data);
+    case 'yaml':
+      return load(data);
+    default:
+      throw new Error('Unknown state!');
   }
-  if (format === '.yml' || format === '.yaml') {
-    return load(filepath);
-  }
-  return null;
 };
-
 export default parsers;

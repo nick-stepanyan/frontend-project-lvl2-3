@@ -4,8 +4,10 @@ const stringify = (data) => {
   if ((_.isObject(data))) {
     return '[complex value]';
   }
-  return typeof data === 'string' ? `'${String(data)}'` : data;
+  return typeof data === 'string' ? `'${String(data)}'` : String(data);
 };
+
+const getPath = (path, name) => [...path, name].join('.');
 
 const plain = (diff) => {
   const iter = (currentValue, path) => {
@@ -13,11 +15,11 @@ const plain = (diff) => {
       .map((data) => {
         switch (data.type) {
           case 'added':
-            return `Property '${[...path, data.name].join('.')}' was added with value: ${stringify(data.value)}`;
+            return `Property '${getPath(path, data.name)}' was added with value: ${stringify(data.value)}`;
           case 'deleted':
-            return `Property '${[...path, data.name].join('.')}' was removed`;
+            return `Property '${getPath(path, data.name)}' was removed`;
           case 'changed':
-            return `Property '${[...path, data.name].join('.')}' was updated. From ${stringify(data.value1)} to ${stringify(data.value2)}`;
+            return `Property '${getPath(path, data.name)}' was updated. From ${stringify(data.value1)} to ${stringify(data.value2)}`;
           case 'isObject':
             return iter(data.value, [...path, data.name]);
           default:
