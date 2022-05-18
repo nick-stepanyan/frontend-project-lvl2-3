@@ -11,7 +11,7 @@ const format = (diff, typeFormat = 'stylish') => {
     case 'stylish':
       return stylish(diff);
     default:
-      throw new Error('Unknown state!');
+      throw new Error(`${typeFormat} - invalid type of format!`);
   }
 };
 export default format;
