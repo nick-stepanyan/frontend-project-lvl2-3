@@ -14,6 +14,8 @@ const plain = (diff) => {
     const result = currentValue.filter((data) => data.type !== 'unchanged')
       .map((data) => {
         switch (data.type) {
+          case 'unchanged':
+            return null;
           case 'added':
             return `Property '${getPath(path, data.name)}' was added with value: ${stringify(data.value)}`;
           case 'deleted':
