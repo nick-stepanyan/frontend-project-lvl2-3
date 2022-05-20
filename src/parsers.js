@@ -1,7 +1,7 @@
 import { load } from 'js-yaml';
 
-const parseData = (data, parserType) => {
-  switch (parserType) {
+const parseData = (data, formatName) => {
+  switch (formatName) {
     case 'json':
       return JSON.parse(data);
     case 'yml':
@@ -9,7 +9,7 @@ const parseData = (data, parserType) => {
     case 'yaml':
       return load(data);
     default:
-      throw new Error(`${parserType} - invalid type of parser!`);
+      throw new Error(`${formatName} - invalid type of parser!`);
   }
 };
 export default parseData;

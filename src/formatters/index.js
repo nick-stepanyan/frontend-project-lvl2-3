@@ -2,8 +2,8 @@ import stylish from './stylish.js';
 import plain from './plain.js';
 import json from './json.js';
 
-const format = (diff, typeFormat = 'stylish') => {
-  switch (typeFormat) {
+const format = (diff, type = 'stylish') => {
+  switch (type) {
     case 'plain':
       return plain(diff);
     case 'json':
@@ -11,7 +11,7 @@ const format = (diff, typeFormat = 'stylish') => {
     case 'stylish':
       return stylish(diff);
     default:
-      throw new Error(`${typeFormat} - invalid type of format!`);
+      throw new Error(`${type} - invalid type of format!`);
   }
 };
 export default format;

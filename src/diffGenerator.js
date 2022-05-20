@@ -11,7 +11,7 @@ const buildDiff = (obj1, obj2) => {
     }
     if (_.isObject(obj1[key]) && _.isObject(obj2[key])) {
       return {
-        name: key, type: 'isObject', value: buildDiff(obj1[key], obj2[key]),
+        name: key, type: 'nested', value: buildDiff(obj1[key], obj2[key]),
       };
     }
     if (_.isEqual(obj1[key], obj2[key])) {

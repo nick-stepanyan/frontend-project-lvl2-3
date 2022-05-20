@@ -20,7 +20,7 @@ const plain = (diff) => {
             return `Property '${getPath(path, data.name)}' was removed`;
           case 'changed':
             return `Property '${getPath(path, data.name)}' was updated. From ${stringify(data.value1)} to ${stringify(data.value2)}`;
-          case 'isObject':
+          case 'nested':
             return iter(data.value, [...path, data.name]);
           default:
             throw new Error(`Unknown state: '${data.type}'!`);

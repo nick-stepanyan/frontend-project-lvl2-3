@@ -24,7 +24,7 @@ const stylish = (diff) => {
           return `${currentIndent(depth)}  ${data.name}: ${stringify(data.value, depth + 1)}`;
         case 'changed':
           return `${currentIndent(depth)}- ${data.name}: ${stringify(data.value1, depth + 1)}\n${currentIndent(depth)}+ ${data.name}: ${stringify(data.value2, depth + 1)}`;
-        case 'isObject':
+        case 'nested':
           return `${currentIndent(depth)}  ${data.name}: {\n${iter(data.value, depth + 1)}\n  ${currentIndent(depth)}}`;
         default:
           throw new Error(`Unknown state: '${data.type}'!`);
