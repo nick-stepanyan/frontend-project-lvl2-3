@@ -1,13 +1,13 @@
-install: # установить зависимости
+install:
 	npm ci
 
-publish: # отладка публикации
+publish:
 	npm publish --dry-run
 	sudo npm link
-lint: # запустить eslint, чтобы исправить ошибки
+lint:
 	npx eslint .
 
-fix: # пофиксить ошибки
+fix:
 	npx eslint --fix .
 
 test:

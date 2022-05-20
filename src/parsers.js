@@ -1,6 +1,6 @@
 import { load } from 'js-yaml';
 
-const parsers = (data, parserType) => {
+const parseData = (data, parserType) => {
   switch (parserType) {
     case 'json':
       return JSON.parse(data);
@@ -12,4 +12,4 @@ const parsers = (data, parserType) => {
       throw new Error(`${parserType} - invalid type of parser!`);
   }
 };
-export default parsers;
+export default parseData;
