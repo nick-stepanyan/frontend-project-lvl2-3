@@ -11,26 +11,24 @@ const getPath = (path, name) => [...path, name].join('.');
 
 const plain = (diff) => {
   const iter = (currentValue, path) => {
-    const result = currentValue.filter((data) => data.type !== 'unchanged')
-      .map((data) => {
-        switch (data.type) {
-          case 'unchanged':
-            return null;
-          case 'added':
-            return `Property '${getPath(path, data.name)}' was added with value: ${stringify(data.value)}`;
-          case 'deleted':
-            return `Property '${getPath(path, data.name)}' was removed`;
-          case 'changed':
-            return `Property '${getPath(path, data.name)}' was updated. From ${stringify(data.value1)} to ${stringify(data.value2)}`;
-          case 'nested':
-            return iter(data.value, [...path, data.name]);
-          default:
-            throw new Error(`Unknown state: '${data.type}'!`);
-        }
-      });
+    const result = currentValue.reduce((acc, data) => {
+      switch (data.type) {
+        case 'added':
+          return [...acc, `Property '${getPath(path, data.name)}' was added with value: ${stringify(data.value)}`];
+        case 'deleted':
+          return [...acc, `Property '${getPath(path, data.name)}' was removed`];
+        case 'changed':
+          return [...acc, `Property '${getPath(path, data.name)}' was updated. From ${stringify(data.value1)} to ${stringify(data.value2)}`];
+        case 'nested':
+          return [...acc, iter(data.value, [...path, data.name])];
+        case 'unchanged':
+          return [...acc];
+        default:
+          throw new Error(`Unknown state: '${data.type}'!`);
+      }
+    }, []);
     return result.join('\n');
   };
   return `${iter(diff, [])}`;
 };
-
 export default plain;
